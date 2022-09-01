@@ -1,0 +1,9 @@
+function [out,fk,t]=frequency_domain(modulating,Fs)
+n=length(modulating)-1; %number of samples
+T=1/Fs;% sampling interval
+k=0:n-1;%indices for the dft
+t=0:T:n*T;%time vector 
+out=fft(modulating);%computing the fast fourier transform
+fk=k*Fs/n;%multiplying the indices by(Fs/n) to get the freqency vector
+fk=fk-0.5*Fs;
+out=fftshift(out);%shifting the signal to become symmetric around zero
